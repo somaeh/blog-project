@@ -1,0 +1,54 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><h2>Stand Blog<em>.</em></h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'home_app:home' %}">Home
+              {% comment %} <span class="sr-only">(current)</span> {% endcomment %}
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.url_name == 'article_list' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'blog_app:article_list'  %}">All Articles</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.url_name == 'article_detail' %}active{% endif %}">
+            <a class="nav-link" href="{{ article.get_absolute_url }}">Post Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog_app:countact_us' %}">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_app:register' %}">register</a>
+          </li>
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+            <div class="d-flex">
+              {% if request.user.first_name %}
+                <span><img src="{{ user.profile.image.url }}" width="25px" height="25px" style="border-radivs: 100%"></span>
+              <a class="nav-link" href="">{{ request.user.username }}{{ request.user.last_name }}</a>
+              <a class="nav-link" href="{% url 'account_app:logout' %}">logout</a>
+              
+            </div>
+            {% endif %}
+
+            {% else %}
+            <a class="nav-link" href="{% url "account_app:login" %}">login</a>
+            {% endif %}
+             
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
