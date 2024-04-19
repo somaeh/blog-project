@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_template_tag %}
 
 
 <div class="col-lg-4">
@@ -18,13 +19,8 @@
           </div>
           <div class="content">
             <ul>
-              {% for art in recent_article %}
-                <li><a href="post-details.html">
-                  <h5>{{ art.title }}</h5>
-                  <span>{{ art.created }}</span>
-                </a></li>
-              {% endfor %}
              
+              {% show_result recent_article %}
              
             </ul>
           </div>

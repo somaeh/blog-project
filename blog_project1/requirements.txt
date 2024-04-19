@@ -1,0 +1,1 @@
+c:\Users\GSS\Desktop\django git\todo-project\requirements.txt
